@@ -11,9 +11,12 @@ public class EndpointExceptionHandler
     public IResult HandleException(HttpContext context)
     {
         var exceptionHandlerFeature =
-            context.Features.Get<IExceptionHandlerFeature>()!;
+            context.Features.Get<IExceptionHandlerFeature>();
 
-        return HandleException(exceptionHandlerFeature.Error, exceptionHandlerFeature.Path);
+        var error = exceptionHandlerFeature?.Error ?? new InvalidOperationException();
+        var path = exceptionHandlerFeature?.Path ?? string.Empty;
+
+        return HandleException(error, path);
     }
 
     protected virtual IResult HandleException(Exception exception, string instancePath)

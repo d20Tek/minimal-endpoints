@@ -11,7 +11,7 @@ public static class ExceptionHandlerRegistration
         where THandler : EndpointExceptionHandler, new()
     {
         app.UseExceptionHandler(exceptionHandlerApp =>
-            exceptionHandlerApp.Run(async context =>
+            exceptionHandlerApp.Run(async (context) =>
             {
                 var handler = new THandler();
                 await handler.HandleException(context)
