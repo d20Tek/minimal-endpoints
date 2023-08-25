@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34009.444
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D20Tek.Minimal.Endpoints", "src\D20Tek.Minimal.Endpoints\D20Tek.Minimal.Endpoints.csproj", "{78532F41-8C2E-4EDA-B43A-34078B246CAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D20Tek.Minimal.Endpoints.UnitTests", "tests\D20Tek.Minimal.Endpoints.UnitTests\D20Tek.Minimal.Endpoints.UnitTests.csproj", "{05548092-7CD8-41E2-B4E6-CDE5307F1634}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{78532F41-8C2E-4EDA-B43A-34078B246CAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78532F41-8C2E-4EDA-B43A-34078B246CAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78532F41-8C2E-4EDA-B43A-34078B246CAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05548092-7CD8-41E2-B4E6-CDE5307F1634}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05548092-7CD8-41E2-B4E6-CDE5307F1634}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05548092-7CD8-41E2-B4E6-CDE5307F1634}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05548092-7CD8-41E2-B4E6-CDE5307F1634}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

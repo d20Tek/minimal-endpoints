@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace D20Tek.Minimal.Endpoints;
 
-public static class ApiEndpointsExtensions
+public static class ApiEndpointExtensions
 {
     public static IServiceCollection AddApiEndpoints(
         this IServiceCollection services,
@@ -40,7 +40,7 @@ public static class ApiEndpointsExtensions
         bool includeInternalTypes)
     {
         var interfaceType = typeof(TInterface);
-        VerifyInterfaceType(interfaceType);
+        interfaceType.ThrowIfNotInterface();
 
         var endpointTypes = assemblyToScan.GetTypes()
             .Where(t =>
@@ -57,14 +57,6 @@ public static class ApiEndpointsExtensions
         {
             var descriptor = new ServiceDescriptor(interfaceType, type, lifetime);
             services.Add(descriptor);
-        }
-    }
-
-    private static void VerifyInterfaceType(Type interfaceType)
-    {
-        if (interfaceType.IsInterface is false)
-        {
-            throw new InvalidOperationException("Canot GetAssemblyTypes with generic type that isn't an interface.");
         }
     }
 
@@ -100,11 +92,11 @@ public static class ApiEndpointsExtensions
         // build collection of all ICompositeApiEndpoint services
         var endpoints = scope.ServiceProvider.GetServices<IApiEndpoint>();
 
-        // loop through each ICompositeApiEndpoint implementations
+        // loop through each IApiEndpoint implementations
         foreach (var item in endpoints)
         {
             // allow each endpoint to add its routes
-            item?.MapRoute(builder);
+            item.MapRoute(builder);
         }
     }
 }
