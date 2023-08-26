@@ -4,9 +4,27 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>D20Tek.Minimal.Endpoints</Title>
+    <Version>0.0.5-prerelease</Version>
+    <Company>D20Tek</Company>
+    <Description>A straightforward library for segmenting ASP.NET Minimal Api into discreet ApiEndpoints that can contain one more many implementation handlers.</Description>
+    <Copyright>Copyright (c) d20Tek.  All rights reserved.</Copyright>
+    <PackageProjectUrl>https://github.com/d20Tek/minimal-endpoints</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/d20Tek/minimal-endpoints</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Minimal API; Endpoints; Simple WebApi; Clean WebApi</PackageTags>
   </PropertyGroup>
 
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 </Project>
