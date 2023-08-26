@@ -4,6 +4,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace D20Tek.Minimal.Endpoints.UnitTests;
 
@@ -15,9 +16,10 @@ public class ApiEndpointExtensionsTests
     {
         // arrange
         IServiceCollection services = new ServiceCollection();
+        Assembly assembly = typeof(IApiEndpoint).Assembly;
 
         // act
-        services = services.AddApiEndpoints();
+        services = services.AddApiEndpointsFromAssembly(assembly);
 
         // assert
         services.Should().BeEmpty();
@@ -28,10 +30,9 @@ public class ApiEndpointExtensionsTests
     {
         // arrange
         IServiceCollection services = new ServiceCollection();
-        var assembly = this.GetType().Assembly;
 
         // act
-        services = services.AddApiEndpointsFromAssembly(assembly);
+        services = services.AddApiEndpoints();
 
         // assert
         services.Should().NotBeEmpty();

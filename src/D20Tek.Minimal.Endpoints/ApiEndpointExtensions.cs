@@ -14,7 +14,7 @@ public static class ApiEndpointExtensions
         ServiceLifetime lifetime = ServiceLifetime.Scoped,
         bool includeInternalTypes = true)
     {
-        Assembly assembly = Assembly.GetExecutingAssembly();
+        Assembly assembly = Assembly.GetCallingAssembly();
         return AddApiEndpointsFromAssembly(services, assembly, lifetime, includeInternalTypes);
     }
 
