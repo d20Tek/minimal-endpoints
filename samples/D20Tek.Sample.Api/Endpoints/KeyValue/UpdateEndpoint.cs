@@ -2,6 +2,7 @@
 // Copyright (c) d20Tek.  All rights reserved.
 //---------------------------------------------------------------------------------------------------------------------
 using D20Tek.Minimal.Endpoints;
+using D20Tek.Minimal.Endpoints.Configuration;
 using D20Tek.Sample.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,11 +19,8 @@ internal sealed class UpdateEndpoint : IApiEndpoint<KeyValueRequest>
 
     public void MapRoute(IEndpointRouteBuilder routeBuilder)
     {
-        routeBuilder.MapPut("/key-value/{key}", HandleAsync)
-            .WithName("UpdateKeyValue")
-            .Produces<KeyValueResponse>(StatusCodes.Status200OK)
-            .ProducesProblem(StatusCodes.Status404NotFound)
-            .WithTags("KeyValue Service")
+        routeBuilder.MapPut(Configuration.Update.RoutePattern, HandleAsync)
+            .WithConfiguration(Configuration.Update)
             .WithOpenApi();
     }
 

@@ -2,6 +2,7 @@
 // Copyright (c) d20Tek.  All rights reserved.
 //---------------------------------------------------------------------------------------------------------------------
 using D20Tek.Minimal.Endpoints;
+using D20Tek.Minimal.Endpoints.Configuration;
 using D20Tek.Sample.Api.Services;
 
 namespace D20Tek.Sample.Api.Endpoints.KeyValue;
@@ -17,11 +18,8 @@ internal sealed class DeleteEndpoint : IApiEndpoint<KeyRequest>
 
     public void MapRoute(IEndpointRouteBuilder routeBuilder)
     {
-        routeBuilder.MapDelete("/key-value/{key}", HandleAsync)
-            .WithName("DeleteKeyValue")
-            .Produces<KeyValueResponse>(StatusCodes.Status200OK)
-            .ProducesProblem(StatusCodes.Status404NotFound)
-            .WithTags("KeyValue Service")
+        routeBuilder.MapDelete(Configuration.Delete.RoutePattern, HandleAsync)
+            .WithConfiguration(Configuration.Delete)
             .WithOpenApi();
     }
 
