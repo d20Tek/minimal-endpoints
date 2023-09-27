@@ -64,6 +64,10 @@ public static class RouteHandlerBuilderExtensions
                 builder.RequireAuthorization();
             }
         }
+        else
+        {
+            builder.AllowAnonymous();
+        }
 
         return builder;
     }
