@@ -29,6 +29,9 @@ app.UseHttpsRedirection();
 // Enable endpoint global exception handler
 app.UseExceptionHandler<EndpointExceptionHandler>();
 
+// Enable logging for all endpoints
+app.UseApiEndpointLogging();
+
 // Map all registered endpoints
 app.MapApiEndpoints();
 

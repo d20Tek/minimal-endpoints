@@ -2,6 +2,7 @@
 // Copyright (c) d20Tek.  All rights reserved.
 //---------------------------------------------------------------------------------------------------------------------
 using D20Tek.Minimal.Endpoints;
+using D20Tek.Minimal.Endpoints.Configuration;
 using D20Tek.Sample.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,11 +19,8 @@ internal sealed class CreateEndpoint : IApiEndpoint<KeyValueRequest>
 
     public void MapRoute(IEndpointRouteBuilder routeBuilder)
     {
-        routeBuilder.MapPost("/key-value", HandleAsync)
-            .WithName("CreateKeyValue")
-            .Produces<KeyValueResponse>(StatusCodes.Status201Created)
-            .ProducesProblem(StatusCodes.Status409Conflict)
-            .WithTags("KeyValue Service")
+        routeBuilder.MapPost(Configuration.Create.RoutePattern, HandleAsync)
+            .WithConfiguration(Configuration.Create)
             .WithOpenApi();
     }
 

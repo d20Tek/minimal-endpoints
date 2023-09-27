@@ -2,6 +2,7 @@
 // Copyright (c) d20Tek.  All rights reserved.
 //---------------------------------------------------------------------------------------------------------------------
 using D20Tek.Minimal.Endpoints;
+using D20Tek.Minimal.Endpoints.Configuration;
 using D20Tek.Sample.Api.Services;
 
 namespace D20Tek.Sample.Api.Endpoints.KeyValue;
@@ -17,11 +18,8 @@ internal sealed class GetByKeyEndpoint : IApiEndpoint<KeyRequest>
 
     public void MapRoute(IEndpointRouteBuilder routeBuilder)
     {
-        routeBuilder.MapGet("/key-value/{key}", HandleAsync)
-            .WithName("GetByKey")
-            .Produces<KeyValueResponse>(StatusCodes.Status200OK)
-            .ProducesProblem(StatusCodes.Status404NotFound)
-            .WithTags("KeyValue Service")
+        routeBuilder.MapGet(Configuration.GetByKey.RoutePattern, HandleAsync)
+            .WithConfiguration(Configuration.GetByKey)
             .WithOpenApi();
     }
 

@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>D20Tek.Minimal.Endpoints</Title>
-    <Version>0.0.5-prerelease</Version>
+    <Version>0.0.6-prerelease</Version>
     <Company>D20Tek</Company>
     <Description>A straightforward library for segmenting ASP.NET Minimal Api into discreet ApiEndpoints that can contain one more many implementation handlers.</Description>
     <Copyright>Copyright (c) d20Tek.  All rights reserved.</Copyright>
