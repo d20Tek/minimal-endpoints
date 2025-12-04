@@ -1,22 +1,12 @@
-﻿//---------------------------------------------------------------------------------------------------------------------
-// Copyright (c) d20Tek.  All rights reserved.
-//---------------------------------------------------------------------------------------------------------------------
-using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
-
-namespace D20Tek.Minimal.Endpoints;
+﻿namespace D20Tek.Minimal.Endpoints;
 
 public static class ApiEndpointExtensions
 {
     public static IServiceCollection AddApiEndpoints(
         this IServiceCollection services,
         ServiceLifetime lifetime = ServiceLifetime.Scoped,
-        bool includeInternalTypes = true)
-    {
-        Assembly assembly = Assembly.GetCallingAssembly();
-        return AddApiEndpointsFromAssembly(services, assembly, lifetime, includeInternalTypes);
-    }
+        bool includeInternalTypes = true) =>
+        services.AddApiEndpointsFromAssembly(Assembly.GetCallingAssembly(), lifetime, includeInternalTypes);
 
     public static IServiceCollection AddApiEndpointsFromAssembly(
         this IServiceCollection services,
@@ -43,15 +33,9 @@ public static class ApiEndpointExtensions
         interfaceType.ThrowIfNotInterface();
 
         var endpointTypes = assemblyToScan.GetTypes()
-            .Where(t =>
-                !t.IsAbstract &&
-                interfaceType.IsAssignableFrom(t) &&
-                t != interfaceType);
+            .Where(t => !t.IsAbstract && interfaceType.IsAssignableFrom(t) && t != interfaceType);
 
-        if (includeInternalTypes is false)
-        {
-            endpointTypes = endpointTypes.Where(t => t.IsPublic);
-        }
+        endpointTypes = includeInternalTypes ? endpointTypes : endpointTypes.Where(t => t.IsPublic);
 
         foreach (var type in endpointTypes)
         {
@@ -60,21 +44,20 @@ public static class ApiEndpointExtensions
         }
     }
 
-    public static IEndpointRouteBuilder MapApiEndpoints(
-        this IEndpointRouteBuilder builder)
+    public static IEndpointRouteBuilder MapApiEndpoints(this IEndpointRouteBuilder builder)
     {
         ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
         using (var scope = builder.ServiceProvider.CreateScope())
         {
-            MapCompositeEndpoints(builder, scope);
-            MapApiEndpoints(builder, scope);
+            builder.MapCompositeEndpoints(scope);
+            builder.MapApiEndpoints(scope);
         }
 
         return builder;
     }
 
-    private static void MapCompositeEndpoints(IEndpointRouteBuilder builder, IServiceScope scope)
+    private static void MapCompositeEndpoints(this IEndpointRouteBuilder builder, IServiceScope scope)
     {
         // build collection of all ICompositeApiEndpoint services
         var composites = scope.ServiceProvider.GetServices<ICompositeApiEndpoint>();
@@ -87,7 +70,7 @@ public static class ApiEndpointExtensions
         }
     }
 
-    private static void MapApiEndpoints(IEndpointRouteBuilder builder, IServiceScope scope)
+    private static void MapApiEndpoints(this IEndpointRouteBuilder builder, IServiceScope scope)
     {
         // build collection of all ICompositeApiEndpoint services
         var endpoints = scope.ServiceProvider.GetServices<IApiEndpoint>();

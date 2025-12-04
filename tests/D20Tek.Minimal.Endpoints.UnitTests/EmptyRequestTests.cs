@@ -14,4 +14,17 @@ public class EmptyRequestTests
         // assert
         request.Should().NotBeNull();
     }
+
+    [TestMethod]
+    public void ChangeSetters()
+    {
+        // arrange
+        var request = new EmptyRequest();
+
+        // act
+        var result = request with { };
+
+        // assert
+        result.Should().NotBeNull();
+    }
 }

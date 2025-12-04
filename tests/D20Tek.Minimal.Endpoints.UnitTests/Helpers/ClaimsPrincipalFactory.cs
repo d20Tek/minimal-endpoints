@@ -29,4 +29,26 @@ internal static class ClaimsPrincipalFactory
 
         return new ClaimsPrincipal(new ClaimsIdentity(claims));
     }
+
+    public static ClaimsPrincipal CreateTestPrincipal(
+        string id,
+        string givenName = "Tester",
+        string familyName = "McTest",
+        string email = "mctest@test.com")
+    {
+        var claims = new List<Claim>
+        {
+            new(ClaimTypes.NameIdentifier, id),
+            new(ClaimTypes.GivenName, givenName),
+            new(ClaimTypes.Surname, familyName),
+            new(ClaimTypes.Name, givenName),
+            new(ClaimTypes.Email, email),
+            new("jti", Guid.NewGuid().ToString()),
+            new("scope", "d20Tek.HabitTracker.ReadWrite"),
+            new("iss", "d20Tek.AuthService"),
+            new("aud", "d20Tek.HabitTracker")
+        };
+
+        return new ClaimsPrincipal(new ClaimsIdentity(claims));
+    }
 }

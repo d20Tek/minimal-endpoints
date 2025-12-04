@@ -1,12 +1,10 @@
-﻿//---------------------------------------------------------------------------------------------------------------------
-// Copyright (c) d20Tek.  All rights reserved.
-//---------------------------------------------------------------------------------------------------------------------
-using Microsoft.AspNetCore.Http;
-
-namespace D20Tek.Minimal.Endpoints.Exceptions;
+﻿namespace D20Tek.Minimal.Endpoints.Exceptions;
 
 public class HttpResponseException : Exception
 {
+    private const string _defaultTitle = "Internal Server Error";
+    private const string _defaultType = "/errors/unknown-error";
+
     public HttpResponseException(
         string detail,
         int? statusCode = null,
@@ -15,8 +13,8 @@ public class HttpResponseException : Exception
         : base(detail)
     {
         StatusCode = statusCode ?? StatusCodes.Status500InternalServerError;
-        Title = title ?? "Internal Server Error";
-        Type = type ?? "/errors/unknown-error";
+        Title = title ?? _defaultTitle;
+        Type = type ?? _defaultType;
     }
 
     public HttpResponseException(
@@ -27,8 +25,8 @@ public class HttpResponseException : Exception
         : base(fromException.Message, fromException)
     {
         StatusCode = statusCode ?? StatusCodes.Status500InternalServerError;
-        Title = title ?? "Internal Server Error";
-        Type = type ?? "/errors/unknown-error";
+        Title = title ?? _defaultTitle;
+        Type = type ?? _defaultType;
     }
 
     public int StatusCode { get; }

@@ -1,9 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------
-// Copyright (c) d20Tek.  All rights reserved.
-//---------------------------------------------------------------------------------------------------------------------
-using System.Security.Claims;
-
-namespace D20Tek.Minimal.Endpoints;
+﻿namespace D20Tek.Minimal.Endpoints;
 
 public static class ClaimsPrincipalExtensions
 {
@@ -14,6 +9,6 @@ public static class ClaimsPrincipalExtensions
         var userId = principal.FindFirstValue(ClaimTypes.NameIdentifier);
         if (userId is null) return Guid.Empty;
 
-        return Guid.Parse(userId);
+        return Guid.TryParse(userId, out Guid result) ? result : Guid.Empty;
     }
 }

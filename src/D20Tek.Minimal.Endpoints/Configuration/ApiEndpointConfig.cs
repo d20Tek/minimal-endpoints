@@ -1,7 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------
-// Copyright (c) d20Tek.  All rights reserved.
-//---------------------------------------------------------------------------------------------------------------------
-namespace D20Tek.Minimal.Endpoints.Configuration;
+﻿namespace D20Tek.Minimal.Endpoints.Configuration;
 
 public sealed record ApiEndpointConfig(
     string RoutePattern,

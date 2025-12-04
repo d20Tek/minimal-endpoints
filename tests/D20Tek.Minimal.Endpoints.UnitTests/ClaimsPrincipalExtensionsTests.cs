@@ -29,4 +29,18 @@ public class ClaimsPrincipalExtensionsTests
         // assert
         result.Should().Be(Guid.Empty);
     }
+
+    [TestMethod]
+    public void FindUserId_WithNonGuidPrincipalId_ReturnsEmptyGuid()
+    {
+        // arrange
+        var userId = Guid.NewGuid();
+        var principal = ClaimsPrincipalFactory.CreateTestPrincipal(id: "test-id");
+
+        // act
+        var result = principal.FindUserId();
+
+        // assert
+        result.Should().Be(Guid.Empty);
+    }
 }
