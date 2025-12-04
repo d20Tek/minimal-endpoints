@@ -1,10 +1,5 @@
-﻿//---------------------------------------------------------------------------------------------------------------------
-// Copyright (c) d20Tek.  All rights reserved.
-//---------------------------------------------------------------------------------------------------------------------
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace D20Tek.Minimal.Endpoints.UnitTests;
 
@@ -37,10 +32,8 @@ public class ApiEndpointExtensionsTests
         // assert
         services.Should().NotBeEmpty();
         services.Should().HaveCount(3);
-        services.Count((descriptor) => descriptor.Lifetime == ServiceLifetime.Scoped)
-                .Should().Be(3);
-        services.Count((descriptor) => descriptor.Lifetime == ServiceLifetime.Singleton)
-                .Should().Be(0);
+        services.Count((descriptor) => descriptor.Lifetime == ServiceLifetime.Scoped).Should().Be(3);
+        services.Count((descriptor) => descriptor.Lifetime == ServiceLifetime.Singleton).Should().Be(0);
     }
 
     [TestMethod]
@@ -48,7 +41,7 @@ public class ApiEndpointExtensionsTests
     {
         // arrange
         IServiceCollection services = new ServiceCollection();
-        var assembly = this.GetType().Assembly;
+        var assembly = GetType().Assembly;
 
         // act
         services = services.AddApiEndpointsFromAssembly(assembly, includeInternalTypes: false);
@@ -71,10 +64,8 @@ public class ApiEndpointExtensionsTests
         // assert
         services.Should().NotBeEmpty();
         services.Should().HaveCount(3);
-        services.Count((descriptor) => descriptor.Lifetime == ServiceLifetime.Scoped)
-                .Should().Be(0);
-        services.Count((descriptor) => descriptor.Lifetime == ServiceLifetime.Singleton)
-                .Should().Be(3);
+        services.Count((descriptor) => descriptor.Lifetime == ServiceLifetime.Scoped).Should().Be(0);
+        services.Count((descriptor) => descriptor.Lifetime == ServiceLifetime.Singleton).Should().Be(3);
     }
 
     [TestMethod]
@@ -82,7 +73,7 @@ public class ApiEndpointExtensionsTests
     {
         // arrange
         var builder = WebApplication.CreateBuilder();
-        var assembly = this.GetType().Assembly;
+        var assembly = GetType().Assembly;
 
         builder.Services.AddApiEndpointsFromAssembly(assembly);
         var app = builder.Build();

@@ -1,7 +1,4 @@
-﻿using D20Tek.Minimal.Endpoints.UnitTests.MockEndpoints;
-using System.Diagnostics.CodeAnalysis;
-
-namespace D20Tek.Minimal.Endpoints.UnitTests;
+﻿namespace D20Tek.Minimal.Endpoints.UnitTests;
 
 [TestClass]
 public class TypeExtensionsTests

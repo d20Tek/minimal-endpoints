@@ -1,12 +1,7 @@
-﻿//---------------------------------------------------------------------------------------------------------------------
-// Copyright (c) d20Tek.  All rights reserved.
-//---------------------------------------------------------------------------------------------------------------------
-using D20Tek.Minimal.Endpoints.Exceptions;
+﻿using D20Tek.Minimal.Endpoints.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Http.HttpResults;
-using System.Diagnostics.CodeAnalysis;
 
 namespace D20Tek.Minimal.Endpoints.UnitTests.Exceptions;
 
@@ -51,15 +46,12 @@ public class EndpointExceptionHandlerTests
         problem.StatusCode.Should().Be(statusCode);
     }
 
-    private Mock<HttpContext> CreateMockContext(
-        Type exceptionType,
-        string path = "/test")
+    private static Mock<HttpContext> CreateMockContext(Type exceptionType, string path = "/test")
     {
-        var exception = CreateExceptionFromType(exceptionType);
         var exceptionFeature = new ExceptionHandlerFeature
         {
             Endpoint = new Endpoint(null, null, "TestEndpoint"),
-            Error = exception,
+            Error = CreateExceptionFromType(exceptionType),
             Path = path
         };
 
@@ -73,19 +65,14 @@ public class EndpointExceptionHandlerTests
         return mockContext;
     }
 
-    private Exception CreateExceptionFromType(Type exceptionType)
+    [ExcludeFromCodeCoverage]
+    private static Exception CreateExceptionFromType(Type exceptionType)
     {
         if (exceptionType == typeof(HttpResponseException))
-        {
             return new HttpResponseException("test", StatusCodes.Status404NotFound);
-        }
 
-        var constructor = exceptionType.GetConstructor(new Type[] { });
+        var constructor = exceptionType.GetConstructor([]);
         var ex = constructor!.Invoke(null).As<Exception>();
-        return ResolveException(ex);
-
-        [ExcludeFromCodeCoverage]
-        static Exception ResolveException(Exception ex) => 
-            ex ?? new Exception();
+        return ex ?? new Exception();
     }
 }

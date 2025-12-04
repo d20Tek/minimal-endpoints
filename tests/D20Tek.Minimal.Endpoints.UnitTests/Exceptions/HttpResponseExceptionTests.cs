@@ -1,9 +1,5 @@
-﻿//---------------------------------------------------------------------------------------------------------------------
-// Copyright (c) d20Tek.  All rights reserved.
-//---------------------------------------------------------------------------------------------------------------------
-using D20Tek.Minimal.Endpoints.Exceptions;
+﻿using D20Tek.Minimal.Endpoints.Exceptions;
 using D20Tek.Minimal.Endpoints.UnitTests.Asserts;
-using Microsoft.AspNetCore.Http;
 
 namespace D20Tek.Minimal.Endpoints.UnitTests.Exceptions;
 

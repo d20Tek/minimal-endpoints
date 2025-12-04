@@ -1,7 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------
-// Copyright (c) d20Tek.  All rights reserved.
-//---------------------------------------------------------------------------------------------------------------------
-namespace D20Tek.Minimal.Endpoints.UnitTests;
+﻿namespace D20Tek.Minimal.Endpoints.UnitTests;
 
 [TestClass]
 public class EmptyRequestTests

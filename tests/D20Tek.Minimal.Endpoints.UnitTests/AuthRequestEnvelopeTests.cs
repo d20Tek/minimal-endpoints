@@ -1,11 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------
-// Copyright (c) d20Tek.  All rights reserved.
-//---------------------------------------------------------------------------------------------------------------------
-using D20Tek.Minimal.Endpoints.UnitTests.Helpers;
-using System.Diagnostics.CodeAnalysis;
-using System.Security.Claims;
-
-namespace D20Tek.Minimal.Endpoints.UnitTests;
+﻿namespace D20Tek.Minimal.Endpoints.UnitTests;
 
 [TestClass]
 public class AuthRequestEnvelopeTests
@@ -19,8 +12,7 @@ public class AuthRequestEnvelopeTests
         // arrange
         var user = ClaimsPrincipalFactory.CreateTestPrincipal();
         var body = new Payload("test-user-id", "Tester McTest");
-        var request = new AuthRequestEnvelope<Payload>(
-            new ClaimsPrincipal(), new Payload());
+        var request = new AuthRequestEnvelope<Payload>(new ClaimsPrincipal(), new Payload());
 
         // act
         request = request with { User = user, Body = body };

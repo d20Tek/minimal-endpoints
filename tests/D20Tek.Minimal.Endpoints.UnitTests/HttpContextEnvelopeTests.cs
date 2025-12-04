@@ -1,12 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------
-// Copyright (c) d20Tek.  All rights reserved.
-//---------------------------------------------------------------------------------------------------------------------
-using D20Tek.Minimal.Endpoints.UnitTests.Helpers;
-using Microsoft.AspNetCore.Http;
-using System.Diagnostics.CodeAnalysis;
-using System.Security.Claims;
-
-namespace D20Tek.Minimal.Endpoints.UnitTests;
+﻿namespace D20Tek.Minimal.Endpoints.UnitTests;
 
 [TestClass]
 public class HttpContextEnvelopeTests
@@ -21,11 +13,7 @@ public class HttpContextEnvelopeTests
         var context = new DefaultHttpContext();
         var user = ClaimsPrincipalFactory.CreateTestPrincipal();
         var body = new Payload("test-user-id", "Tester McTest");
-
-        var request = new HttpContextEnvelope<Payload>(
-            new DefaultHttpContext(),
-            new ClaimsPrincipal(),
-            new Payload());
+        var request = new HttpContextEnvelope<Payload>(new DefaultHttpContext(), new ClaimsPrincipal(), new Payload());
 
         // act
         request = request with

@@ -1,9 +1,3 @@
-//---------------------------------------------------------------------------------------------------------------------
-// Copyright (c) d20Tek.  All rights reserved.
-//---------------------------------------------------------------------------------------------------------------------
-using D20Tek.Minimal.Endpoints.UnitTests.Helpers;
-using System.Security.Claims;
-
 namespace D20Tek.Minimal.Endpoints.UnitTests;
 
 [TestClass]

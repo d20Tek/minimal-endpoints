@@ -1,8 +1,4 @@
-﻿using D20Tek.Minimal.Endpoints.UnitTests.Helpers;
-using Microsoft.AspNetCore.Http;
-using System.Security.Claims;
-
-namespace D20Tek.Minimal.Endpoints.UnitTests;
+﻿namespace D20Tek.Minimal.Endpoints.UnitTests;
 
 [TestClass]
 public class HttpContextRequestTests

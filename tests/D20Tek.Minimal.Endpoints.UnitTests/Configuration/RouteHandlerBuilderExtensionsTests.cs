@@ -1,10 +1,5 @@
-﻿//---------------------------------------------------------------------------------------------------------------------
-// Copyright (c) d20Tek.  All rights reserved.
-//---------------------------------------------------------------------------------------------------------------------
-using D20Tek.Minimal.Endpoints.Configuration;
+﻿using D20Tek.Minimal.Endpoints.Configuration;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using System.Diagnostics.CodeAnalysis;
 
 namespace D20Tek.Minimal.Endpoints.UnitTests.Configuration;
 
@@ -19,13 +14,10 @@ public class RouteHandlerBuilderExtensionsTests
             "/",
             "GetTest",
             "Get Test",
-            Tags: new string[] { "Weather Service" },
+            Tags: ["Weather Service"],
             Summary: "This is a test endpoint.",
             Description: "Long-winded description of the test endpoint.",
-            Produces: new[]
-            {
-                Config.Produces<TestResponse>(StatusCodes.Status200OK)
-            });
+            Produces: [ Config.Produces<TestResponse>(StatusCodes.Status200OK) ]);
 
         var builder = CreateRouteBuilder();
 
@@ -44,14 +36,14 @@ public class RouteHandlerBuilderExtensionsTests
             "/",
             "GetTest",
             "Get Test",
-            Tags: new string[] { "Weather Service" },
-            Produces: new[]
-            {
+            Tags: ["Weather Service"],
+            Produces:
+            [
                 Config.Produces<TestResponse>(StatusCodes.Status200OK),
                 Config.Produces(StatusCodes.Status204NoContent),
                 Config.ProducesProblem(StatusCodes.Status404NotFound),
                 Config.ProducesValidationProblem()
-            });
+            ]);
 
         var builder = CreateRouteBuilder();
 
@@ -69,12 +61,12 @@ public class RouteHandlerBuilderExtensionsTests
         var config = new ApiEndpointConfig(
             "/",
             "GetTest",
-            Tags: new string[] { "Weather Service" },
-            Accepts: new[]
-            {
+            Tags: ["Weather Service"],
+            Accepts:
+            [
                 Config.Accepts<TestRequest>("application/json", true),
                 Config.Accepts(typeof(TestRequest), "text/plain")
-            });
+            ]);
 
         var builder = CreateRouteBuilder();
 
@@ -92,13 +84,10 @@ public class RouteHandlerBuilderExtensionsTests
         var config = new ApiEndpointConfig(
             "/",
             "GetTest",
-            Tags: new string[] { "Weather Service" },
+            Tags: ["Weather Service"],
             RequiresAuthorization: true,
-            AuthorizationPolicies: new[] { "TestAuthPolicy", "AdminPolicy" },
-            Produces: new[]
-            {
-                Config.Produces<TestResponse>(StatusCodes.Status200OK)
-            });
+            AuthorizationPolicies: ["TestAuthPolicy", "AdminPolicy"],
+            Produces: [ Config.Produces<TestResponse>(StatusCodes.Status200OK) ]);
 
         var builder = CreateRouteBuilder();
 
@@ -116,12 +105,9 @@ public class RouteHandlerBuilderExtensionsTests
         var config = new ApiEndpointConfig(
             "/",
             "GetTest",
-            Tags: new string[] { "Weather Service" },
+            Tags: ["Weather Service"],
             RequiresAuthorization: true,
-            Produces: new[]
-            {
-                Config.Produces<TestResponse>(StatusCodes.Status200OK)
-            });
+            Produces: [ Config.Produces<TestResponse>(StatusCodes.Status200OK) ]);
 
         var builder = CreateRouteBuilder();
 
@@ -132,13 +118,10 @@ public class RouteHandlerBuilderExtensionsTests
         result.Should().NotBeNull();
     }
 
-    private RouteHandlerBuilder CreateRouteBuilder()
+    private static RouteHandlerBuilder CreateRouteBuilder()
     {
-        var appBuilder = WebApplication.CreateBuilder();
-        var app = appBuilder.Build();
-
-        var routeBuilder = app.MapGet("/", [ExcludeFromCodeCoverage] () => { });
-        return routeBuilder;
+        var app = WebApplication.CreateBuilder().Build();
+        return app.MapGet("/", [ExcludeFromCodeCoverage] () => { });
     }
 
     public class TestRequest { }

@@ -1,11 +1,5 @@
-﻿//---------------------------------------------------------------------------------------------------------------------
-// Copyright (c) d20Tek.  All rights reserved.
-//---------------------------------------------------------------------------------------------------------------------
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http.Features;
-using Microsoft.Extensions.Logging;
-using System.Text;
 
 namespace D20Tek.Minimal.Endpoints.UnitTests;
 
@@ -75,24 +69,27 @@ public class ApiEndpointLoggingFilterTests
         nextCalled.Should().BeTrue();
     }
 
-    public HttpContext CreateHttpContext(string bodyText)
+    public static HttpContext CreateHttpContext(string bodyText)
     {
         var context = new DefaultHttpContext();
 
-        var requestFeature = new HttpRequestFeature();
-
-        requestFeature.Protocol = "https";
-        requestFeature.Method = "POST";
-        requestFeature.Scheme = "https";
-        requestFeature.PathBase = new PathString("/");
-        requestFeature.Path = new PathString("/example");
+        var requestFeature = new HttpRequestFeature
+        {
+            Protocol = "https",
+            Method = "POST",
+            Scheme = "https",
+            PathBase = new PathString("/"),
+            Path = new PathString("/example")
+        };
         requestFeature.Headers["HeaderName"] = "HeaderValue";
 
         if (string.IsNullOrEmpty(bodyText) is false)
         {
             byte[] contentBytes = Encoding.UTF8.GetBytes(bodyText);
-            var stream = new MemoryStream(contentBytes);
-            stream.Position = 0;
+            var stream = new MemoryStream(contentBytes)
+            {
+                Position = 0
+            };
 
             requestFeature.Body = stream;
         }

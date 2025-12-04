@@ -1,10 +1,7 @@
 ﻿using D20Tek.Minimal.Endpoints.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
-using Microsoft.Extensions.Logging;
-using System.Diagnostics.CodeAnalysis;
 
 namespace D20Tek.Minimal.Endpoints.UnitTests.Exceptions;
 
@@ -38,14 +35,12 @@ public class ExceptionHandlerRegistrationTests
             ExceptionHandlerRegistration.RunHandlerImpl<EndpointExceptionHandler>(context.Object));
     }
 
-    private Mock<HttpContext> CreateMockContext(
-        string path = "/test")
+    private static Mock<HttpContext> CreateMockContext(string path = "/test")
     {
-        var exception = new InvalidOperationException();
         var exceptionFeature = new ExceptionHandlerFeature
         {
             Endpoint = new Endpoint(null, null, "TestEndpoint"),
-            Error = exception,
+            Error = new InvalidOperationException(),
             Path = path
         };
 

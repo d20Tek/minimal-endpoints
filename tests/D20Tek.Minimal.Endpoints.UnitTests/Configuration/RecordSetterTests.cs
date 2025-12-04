@@ -1,8 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------
-// Copyright (c) d20Tek.  All rights reserved.
-//---------------------------------------------------------------------------------------------------------------------
-using D20Tek.Minimal.Endpoints.Configuration;
-using Microsoft.AspNetCore.Http;
+﻿using D20Tek.Minimal.Endpoints.Configuration;
 
 namespace D20Tek.Minimal.Endpoints.UnitTests.Configuration;
 
