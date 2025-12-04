@@ -1,7 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------
-// Copyright (c) d20Tek.  All rights reserved.
-//---------------------------------------------------------------------------------------------------------------------
-using D20Tek.Minimal.Endpoints.UnitTests.MockEndpoints;
+﻿using D20Tek.Minimal.Endpoints.UnitTests.MockEndpoints;
 using System.Diagnostics.CodeAnalysis;
 
 namespace D20Tek.Minimal.Endpoints.UnitTests;
@@ -19,13 +16,12 @@ public class TypeExtensionsTests
     }
 
     [TestMethod]
-    [ExcludeFromCodeCoverage]
-    [ExpectedException(typeof(InvalidOperationException))]
     public void ThrowIfNotInterface_WithClass_ThrowsException()
     {
         // arrange
 
-        // act
-        typeof(CompositeEndpoint).ThrowIfNotInterface();
+        // act - assert
+        Assert.Throws<InvalidOperationException>([ExcludeFromCodeCoverage] () =>
+            typeof(CompositeEndpoint).ThrowIfNotInterface());
     }
 }

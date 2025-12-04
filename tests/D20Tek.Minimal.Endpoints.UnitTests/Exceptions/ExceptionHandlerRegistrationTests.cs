@@ -1,7 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------
-// Copyright (c) d20Tek.  All rights reserved.
-//---------------------------------------------------------------------------------------------------------------------
-using D20Tek.Minimal.Endpoints.Exceptions;
+﻿using D20Tek.Minimal.Endpoints.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
@@ -28,8 +25,6 @@ public class ExceptionHandlerRegistrationTests
     }
 
     [TestMethod]
-    [ExcludeFromCodeCoverage]
-    [ExpectedException(typeof(NullReferenceException))]
     public async Task RunExceptionHandlerImpl()
     {
         // arrange
@@ -38,11 +33,9 @@ public class ExceptionHandlerRegistrationTests
 
         var context = CreateMockContext();
 
-        // act
-        await ExceptionHandlerRegistration.RunHandlerImpl<EndpointExceptionHandler>(
-            context.Object);
-
-        // assert
+        // act - assert
+        await Assert.ThrowsAsync<NullReferenceException>([ExcludeFromCodeCoverage] () => 
+            ExceptionHandlerRegistration.RunHandlerImpl<EndpointExceptionHandler>(context.Object));
     }
 
     private Mock<HttpContext> CreateMockContext(
