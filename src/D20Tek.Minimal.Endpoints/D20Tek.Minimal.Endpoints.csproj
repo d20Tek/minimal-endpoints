@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>D20Tek.Minimal.Endpoints</Title>
-    <Version>0.1.8-prerelease</Version>
+    <Version>1.0.1</Version>
     <Company>D20Tek</Company>
     <Description>A straightforward library for segmenting ASP.NET Minimal Api into discreet ApiEndpoints that can contain one more many implementation handlers.</Description>
     <Copyright>Copyright (c) d20Tek.  All rights reserved.</Copyright>
