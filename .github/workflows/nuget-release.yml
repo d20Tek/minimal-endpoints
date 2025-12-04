@@ -23,13 +23,14 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: 9.0.x
     - name: Build
       run: dotnet build --configuration Release /p:Version=${VERSION}
     - name: Test
       run: dotnet test --configuration Release /p:Version=${VERSION} --no-build
     - name: Pack
       run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
+
     - name: Publish D20Tek.Minimal.Endpoints
       run: dotnet nuget push D20Tek.Minimal.Endpoints.${VERSION}.nupkg --source https://nuget.pkg.github.com/d20Tek/index.json --api-key ${GITHUB_TOKEN}
       env:
