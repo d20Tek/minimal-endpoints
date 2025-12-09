@@ -1,34 +1,28 @@
-﻿//---------------------------------------------------------------------------------------------------------------------
-// Copyright (c) d20Tek.  All rights reserved.
-//---------------------------------------------------------------------------------------------------------------------
-using D20Tek.Minimal.Endpoints;
-using D20Tek.Minimal.Endpoints.Configuration;
+﻿using D20Tek.Minimal.Endpoints.Configuration;
 
 namespace D20Tek.Sample.Api.Endpoints.Weather;
 
-internal class GetWeatherForecastEndpoint : IApiEndpoint
+internal sealed class GetWeatherForecastEndpoint : IApiEndpoint
 {
-    private readonly string[] summaries = new[]
-    {
+    private readonly string[] summaries =
+    [
         "Freezing", "Bracing", "Chilly", "Cool", "Mild",
         "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+    ];
 
-    private static ApiEndpointConfig _config = new ApiEndpointConfig(
+    private static readonly ApiEndpointConfig _config = new(
         "/weatherforecast",
         "GetWeatherForecast",
-        Tags: new string[] { "Weather Service" },
-        Produces: new[]
-        {
+        Tags: ["Weather Service"],
+        Produces:
+        [
             Config.Produces<WeatherForecastResponse>(StatusCodes.Status200OK)
-        });
+        ]);
 
-    public void MapRoute(IEndpointRouteBuilder routeBuilder)
-    {
+    public void MapRoute(IEndpointRouteBuilder routeBuilder) => 
         routeBuilder.MapGet(_config.RoutePattern, Handle)
-            .WithConfiguration(_config)
-            .WithOpenApi();
-    }
+                    .WithConfiguration(_config)
+                    .WithOpenApi();
 
     private IResult Handle(CancellationToken cancellation)
     {

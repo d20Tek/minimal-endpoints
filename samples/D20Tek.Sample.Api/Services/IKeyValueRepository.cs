@@ -1,7 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------
-// Copyright (c) d20Tek.  All rights reserved.
-//---------------------------------------------------------------------------------------------------------------------
-namespace D20Tek.Sample.Api.Services;
+﻿namespace D20Tek.Sample.Api.Services;
 
 public interface IKeyValueRepository
 {
