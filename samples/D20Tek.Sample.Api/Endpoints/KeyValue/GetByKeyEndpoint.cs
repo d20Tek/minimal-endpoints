@@ -1,8 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------
 // Copyright (c) d20Tek.  All rights reserved.
 //---------------------------------------------------------------------------------------------------------------------
-using D20Tek.Minimal.Endpoints;
-using D20Tek.Minimal.Endpoints.Configuration;
 using D20Tek.Sample.Api.Services;
 
 namespace D20Tek.Sample.Api.Endpoints.KeyValue;
@@ -28,7 +26,7 @@ internal sealed class GetByKeyEndpoint : IApiEndpoint<KeyRequest>
         CancellationToken cancellation)
     {
         await Task.CompletedTask;
-        ArgumentNullException.ThrowIfNull(nameof(request));
+        ArgumentNullException.ThrowIfNull(request);
 
         var result = _repository.Get(request.Key);
         if (result is not null)

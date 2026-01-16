@@ -1,4 +1,5 @@
 global using D20Tek.Minimal.Endpoints;
+global using D20Tek.Minimal.Endpoints.Configuration;
 global using D20Tek.Minimal.Endpoints.Exceptions;
 using D20Tek.Sample.Api.Services;
 

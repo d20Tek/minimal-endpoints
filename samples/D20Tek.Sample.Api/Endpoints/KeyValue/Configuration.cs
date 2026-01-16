@@ -1,8 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------
 // Copyright (c) d20Tek.  All rights reserved.
 //---------------------------------------------------------------------------------------------------------------------
-using D20Tek.Minimal.Endpoints.Configuration;
-
 namespace D20Tek.Sample.Api.Endpoints.KeyValue;
 
 public static class Configuration

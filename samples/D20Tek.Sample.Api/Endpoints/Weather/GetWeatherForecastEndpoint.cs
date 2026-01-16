@@ -1,6 +1,4 @@
-﻿using D20Tek.Minimal.Endpoints.Configuration;
-
-namespace D20Tek.Sample.Api.Endpoints.Weather;
+﻿namespace D20Tek.Sample.Api.Endpoints.Weather;
 
 internal sealed class GetWeatherForecastEndpoint : IApiEndpoint
 {
