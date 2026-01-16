@@ -17,8 +17,7 @@ internal sealed class DeleteEndpoint : IApiEndpoint<KeyRequest>
     public void MapRoute(IEndpointRouteBuilder routeBuilder)
     {
         routeBuilder.MapDelete(Configuration.Delete.RoutePattern, HandleAsync)
-            .WithConfiguration(Configuration.Delete)
-            .WithOpenApi();
+            .WithConfiguration(Configuration.Delete);
     }
 
     public async Task<IResult> HandleAsync(

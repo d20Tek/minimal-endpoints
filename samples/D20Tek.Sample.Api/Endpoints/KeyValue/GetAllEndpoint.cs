@@ -17,8 +17,7 @@ internal sealed class GetAllEndpoint : IApiEndpoint<EmptyRequest>
     public void MapRoute(IEndpointRouteBuilder routeBuilder)
     {
         routeBuilder.MapGet(Configuration.GetAll.RoutePattern, HandleAsync)
-            .WithConfiguration(Configuration.GetAll)
-            .WithOpenApi();
+            .WithConfiguration(Configuration.GetAll);
     }
 
     public async Task<IResult> HandleAsync(

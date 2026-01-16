@@ -18,8 +18,7 @@ internal sealed class CreateEndpoint : IApiEndpoint<KeyValueRequest>
     public void MapRoute(IEndpointRouteBuilder routeBuilder)
     {
         routeBuilder.MapPost(Configuration.Create.RoutePattern, HandleAsync)
-            .WithConfiguration(Configuration.Create)
-            .WithOpenApi();
+            .WithConfiguration(Configuration.Create);
     }
 
     public async Task<IResult> HandleAsync(

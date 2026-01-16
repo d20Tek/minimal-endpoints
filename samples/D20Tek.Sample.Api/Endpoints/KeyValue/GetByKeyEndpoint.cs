@@ -17,8 +17,7 @@ internal sealed class GetByKeyEndpoint : IApiEndpoint<KeyRequest>
     public void MapRoute(IEndpointRouteBuilder routeBuilder)
     {
         routeBuilder.MapGet(Configuration.GetByKey.RoutePattern, HandleAsync)
-            .WithConfiguration(Configuration.GetByKey)
-            .WithOpenApi();
+            .WithConfiguration(Configuration.GetByKey);
     }
 
     public async Task<IResult> HandleAsync(

@@ -19,8 +19,7 @@ internal sealed class GetWeatherForecastEndpoint : IApiEndpoint
 
     public void MapRoute(IEndpointRouteBuilder routeBuilder) => 
         routeBuilder.MapGet(_config.RoutePattern, Handle)
-                    .WithConfiguration(_config)
-                    .WithOpenApi();
+                    .WithConfiguration(_config);
 
     private IResult Handle(CancellationToken cancellation)
     {

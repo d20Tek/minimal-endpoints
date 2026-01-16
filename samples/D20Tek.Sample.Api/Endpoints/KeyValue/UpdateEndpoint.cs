@@ -18,8 +18,7 @@ internal sealed class UpdateEndpoint : IApiEndpoint<KeyValueRequest>
     public void MapRoute(IEndpointRouteBuilder routeBuilder)
     {
         routeBuilder.MapPut(Configuration.Update.RoutePattern, HandleAsync)
-            .WithConfiguration(Configuration.Update)
-            .WithOpenApi();
+            .WithConfiguration(Configuration.Update);
     }
 
     public async Task<IResult> HandleAsync(

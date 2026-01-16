@@ -5,8 +5,7 @@ public sealed class HomeEndpoints : ICompositeApiEndpoint
     public void MapRoutes(IEndpointRouteBuilder routeBuilder)
     {
         var groupBuilder = routeBuilder.MapGroup("/")
-                                       .WithTags("Home")
-                                       .WithOpenApi();
+                                       .WithTags("Home");
 
         groupBuilder.MapGet("/", GetHome);
 
