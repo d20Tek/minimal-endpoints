@@ -1,0 +1,11 @@
+<Project>
+
+	<PropertyGroup>
+	<Nullable>enable</Nullable>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	<Company>D20Tek</Company>
+	<Copyright>Copyright (c) d20Tek.  All rights reserved.</Copyright>
+	</PropertyGroup>
+
+</Project>
